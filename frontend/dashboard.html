@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard - SubPortal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen font-sans">
+
+    <header class="border-b border-zinc-900 bg-zinc-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <h1 class="text-xl font-black tracking-tight text-red-500">SUB<span class="text-white">PORTAL</span></h1>
+            <div class="flex items-center gap-4">
+                <span id="welcome-user" class="text-zinc-300 text-sm font-medium">Loading User...</span>
+                <button onclick="handleLogout()" class="px-3 py-1.5 border border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-lg text-xs font-semibold transition">Sign Out</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-10">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight">Your Applications</h2>
+                <p class="text-zinc-400 text-sm mt-1">Select an app to manage its associated customers and plan tiers.</p>
+            </div>
+            <button onclick="toggleAppModal(true)" class="px-4 py-2.5 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-sm font-semibold rounded-xl tracking-wide shadow-lg shadow-red-900/20 transition">
+                + Register New App
+            </button>
+        </div>
+
+        <div id="apps-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-zinc-500 text-sm col-span-full">Fetching applications from backend database pipeline...</p>
+        </div>
+    </main>
+
+    <div id="app-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-zinc-900 border border-zinc-800 w-full max-w-md p-6 rounded-2xl shadow-2xl relative">
+            <h3 class="text-lg font-bold mb-1">Register New Application</h3>
+            <p class="text-zinc-400 text-xs mb-5">Provide a unique system identifier name for your subscription product.</p>
+            
+            <form onsubmit="handleCreateApp(event)">
+                <div class="mb-5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">Application Name</label>
+                    <input type="text" id="modal-app-name" required class="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 rounded-xl focus:outline-none focus:border-red-500 transition text-sm text-white" placeholder="e.g., Smart Book Hub">
+                </div>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="toggleAppModal(false)" class="px-4 py-2 bg-zinc-950 border border-zinc-800 hover:bg-zinc-800 rounded-xl text-sm font-semibold transition">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-xl text-sm font-semibold transition">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
